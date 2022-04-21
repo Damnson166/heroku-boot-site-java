@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:regular,500,600,700,800&display=swap" rel="stylesheet" />
+    <title>Express Trucking Company</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/img/logo2.png"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        /*Скидаємо відступи*/
+*,
+*::before,
+*::after {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	box-sizing: border-box;
+}
+
+html{
+	scroll-behavior: smooth;
+}
+
+
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+body {
+	height: 100%;
+	min-height: 100vh;
+	scroll-behavior: smooth;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+	font-family: Montserrat;
+	color: #252b42;
+	font-size: 14px;
+	font-weight: 500;
+ }
+
+ ul[class],
+ ol[class] {
+	list-style: none;
+ }
+
+ a:not([class]) {
+	text-decoration-skip-ink: auto;
+ }
+
+ img {
+	max-width: 100%;
+	display: block;
+ }
+
+ article > * + * {
+	margin-top: 1em;
+ }
+
+ input,
+ button,
+ textarea,
+ select {
+	font: inherit;
+ }
+
+/*CSS*/
+/*......................................*/
+
+.wrapper{
+	min-height: 100vh;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+._container{
+	max-width: 1245px;
+	margin: 0px auto;
+	padding: 0px 25px;
+	box-sizing: content-box;
+}
+
+@media (max-width: 1245px){
+	._container{
+		max-width: 970px;
+	}
+}
+
+@media (max-width: 992px){
+	._container{
+		max-width: 750px;
+	}
+}
+
+@media (max-width: 767px){
+	._container{
+		max-width: none;
+	}
+}
+
+
+
+._ibg{
+	position: relative;
+}
+
+._ibg img {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	object-fit: cover;
+}
+/*......................................*/
+.header {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: 0;
+	z-index: 50;
+}
+.header__container {
+	display: flex;
+	min-height: 104px;
+	align-items: center;
+	justify-content: space-between;
+}
+
+@media (max-width: 479px){
+	.header__container {
+		min-height: 70px;
+	}
+}
+
+.header__logo {
+	color: none;
+}
+.header__menu {
+	margin: 0px 0px 0px 133px;
+}
+
+@media (max-width: 992px) {
+	.header__menu {
+		margin: 0px 0px 0px 80px;
+	}
+}
+
+@media (max-width: 767px) {
+	.header__menu {
+		margin: 0px 0px 0px 40px;
+	}
+}
+
+.menu {
+	padding: 5px 0;
+}
+.menu__list {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+/* a::after{
+	content: '';
+	width: 0%;
+	height: 2px;
+	color: #252b42;
+	margin: auto;
+	transition: 0.5s;
+}
+
+a:hover::after{
+	width: 100%;
+} */
+
+
+
+
+.menu__item:not(:last-child){
+	margin: 0px 21px 0px 0px;
+}
+
+.menu__item::after{
+	content: '';
+	width: 0%;
+	height: 2px;
+	background: #fafafa;
+	display: block;
+	margin: auto;
+	transition: 0.5s;
+}
+
+.menu__item:hover::after{
+	width: 100%;
+}
+
+
+.menu__link {
+	color: #fafafa;
+	font-weight: 600;
+	line-height: calc(24 / 14 * 100%);
+	font-size: 16px;
+	transition: 0.5s;
+	text-decoration: none;
+}
+
+.menu__link:hover{
+	color: #132e99;
+	text-decoration: none;
+}
+
+@media (max-width: 479px){
+	.menu__link{
+		font-size: 18px;
+	}
+}
+
+/*page*/
+.page{
+	flex: 1 1 auto;
+}
+
+
+/*footer*/
+.footer{
+	width: 100%;
+	height: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+
+
+/*main-block*/
+
+.main-block {
+	position: relative;
+}
+
+
+.main-block__body {
+	padding: 150px 0px 191px 0px;
+	position: relative;
+	z-index: 2;
+	max-width: 1000px;
+	margin: 0px auto;
+	min-height: 100vh;
+}
+
+.main-block__body > *:not(:last-child){
+	margin: 0px 0px 30px 0px;
+}
+
+.main-block__title {
+	font-size: 58px;
+	line-height: calc(80 / 58 * 100%);
+	font-weight: 800;
+	color: #fafafa;
+	padding: 0px 0px 0px 15px;
+	transform: translate(0px, 120%);
+	opacity: 0;
+	transition: all 0.8s ease 0s;
+}
+
+.main-block__title._active{
+	transform: translate(0px, 0px);
+	opacity: 1;
+}
+
+
+.main-block__text {
+	color: #fafafa;
+	font-size: 40px;
+	line-height: 137%;
+	text-align: center;
+
+	transform: translate(0px, 120%);
+	opacity: 0;
+	transition: all 0.8s ease 0s;
+}
+
+.main-block__text._active{
+	transform: translate(0px, 0px);
+	opacity: 1;
+	transition: all 0.8s ease 0.4s;
+}
+
+.main-block__buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.main-block__button {
+	background: #fafafa;
+	border-radius: 37px;
+	display: flex;
+	min-height: 48px;
+	justify-content: center;
+	align-items: center;
+	letter-spacing: 0.2px;
+	padding: 5px 36px;
+	color: #252b42;
+	font-weight: 700;
+	line-height: 150%;
+	text-align: center;
+	text-decoration: none;
+	transform: translate(0px, 120%);
+	opacity: 0;
+	transition: all 0.8s ease 0s;
+}
+
+.main-block__button._active{
+	transform: translate(0px, 0px);
+	opacity: 1;
+	transition: all 0.8s ease 0.2s;
+}
+
+.main-block__button:hover{
+	transition: 0.4s;
+	background: #132e99;
+	color: #fafafa;
+	text-decoration: none;
+}
+
+.main-block__image{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+
+/*about us block*/
+.about-us {
+	position: relative;
+
+}
+.about-us__container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.about-us__body {
+	display: inline-flex;
+	position: relative;
+	padding: 180px 0px 180px 0px;
+
+}
+
+.img-truck_about{
+	border-radius: 20px 0px 0px 20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.about-us__text {
+	width: 1400px;
+	height: 500px;
+	padding: 25px 25px;
+	background: #4d69da;
+	padding-top: 70px;
+	border-radius: 0px 20px 20px 0px;
+	box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2), 0px 6px 20px 0px rgba(0, 0, 0, 0.19);
+}
+
+
+.about-us__title {
+	text-align: center;
+	color: #fafafa;
+	transform: translate(0px, 120%);
+	opacity: 0;
+	transition: all 0.8s ease 0s;
+}
+
+.about-us__title._active{
+	transform: translate(0px, 0px);
+	opacity: 1;
+	transition: all 0.8s ease 0.4s;
+}
+
+.about-text__text{
+	color: #fafafa;
+	text-align: justify;
+	overflow: hidden;
+}
+
+.about-us__text > *:not(:last-child){
+	margin: 0px 0px 15px 0px;
+}
+
+
+.fullscreen_bg{
+	background: url("/img/truck4k.jpg") center / cover no-repeat fixed;
+	height: 600px;
+	width: 100%;
+	box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2), 0px 6px 20px 0px rgba(0, 0, 0, 0.19);
+
+}
+
+._anim-show{
+	transform: translate(0px, 120%);
+	opacity: 0;
+	transition: all 0.8s ease 0s;
+}
+
+._anim-show._active,
+._active ._anim-show{
+	opacity: 1;
+	transform: translate(0px, 0px);
+}
+
+
+/*Price*/
+.price {
+	width: 100%;
+	height: 600px;
+}
+.price__body {
+	height: 360px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.box{
+	width: 350px;
+	height: 500px;
+	background: linear-gradient(to top, white 88%, #4d69da 12%);
+	border-radius: 14px 14px 0px 0px;
+	padding: 15px;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+.price__title {
+	text-align: center;
+	color: #fff;
+}
+.price__title-number {
+	text-align: center;
+	padding: 50px 0px 0px 0px;
+	font-weight: bold;
+	color: #252b42;
+
+	transform: translate(0px, 120%);
+	opacity: 0;
+	transition: all 0.8s ease 0s;
+}
+
+.price__title-number._active{
+	opacity: 1;
+	transform: translate(0px, 0px);
+}
+
+.price__button {
+	background: #fafafa;
+	border-radius: 37px;
+	display: flex;
+	min-height: 48px;
+	justify-content: center;
+	align-items: center;
+	letter-spacing: 0.2px;
+	padding: 5px 36px;
+	color: #252b42;
+	font-weight: 700;
+	line-height: 150%;
+	text-align: center;
+	text-decoration: none;
+	transition: 0.5s;
+
+}
+
+.price__button:hover{
+	transition: 0.4s;
+	background: #132e99;
+	color: #fafafa;
+	text-decoration: none;
+
+}
+
+.price-list__body{
+	padding: 10px 10px 40px 20px;
+
+}
+
+.price__list {
+}
+
+.price__list-condition {
+	padding: 10px;
+	list-style-type: circle;
+}
+
+.col{
+	transform: translate(0px, 120%);
+	opacity: 0;
+	transition: all 0.8s ease 0s;
+}
+
+.col._active{
+	transform: translate(0px, 0px);
+	opacity: 1;
+}
+
+
+/*Carousel*/
+.slide{
+	height: 660px;
+}
+
+
+
+
+/* FORM */
+
+.main-block{
+	width: 100%;
+	padding: 100px 0px 100px 0px;
+}
+
+.left-part__img{
+	box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2), 0px 6px 20px 0px rgba(0, 0, 0, 0.19);
+	border-radius: 37px;
+}
+
+
+.form__title {
+	margin: 0 0 20px;
+	font-weight: bold;
+	color: #4d69da;
+	}
+	.left-part{
+
+	}
+	.form__message {
+	margin: 0 0 5px;
+	}
+	.main-block {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: #ffff;
+	}
+	.form__form {
+	padding: 25px;
+	margin: 25px;
+	box-shadow: 0 2px 5px #f5f5f5;
+	background: #f5f5f5;
+	border-radius: 37px;
+	box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2), 0px 6px 20px 0px rgba(0, 0, 0, 0.19);
+	}
+	.fas {
+	margin: 25px 10px 0;
+	font-size: 72px;
+	color: #fff;
+	}
+	.fa-envelope {
+	transform: rotate(-20deg);
+	}
+	.fa-at , .fa-mail-bulk{
+	transform: rotate(10deg);
+	}
+	.form__input, .form__textarea {
+	width: calc(100% - 18px);
+	padding: 8px;
+	margin-bottom: 20px;
+	border: 1px solid #4d69da;
+	outline: none;
+	border-radius: 17px;
+	}
+	.form__input::placeholder {
+	color: #666;
+	}
+	.button__form {
+		display: flex;
+		min-height: 48px;
+		justify-content: center;
+		align-items: center;
+		letter-spacing: 0.2px;
+		padding: 5px 36px;
+		font-weight: 700;
+		line-height: 150%;
+		text-align: center;
+		text-decoration: none;
+		width: 100%;
+		border: none;
+		background: #4d69da;
+		color: #fff;
+		border-radius: 37px;
+		cursor: pointer;
+		transition: 0.5s;
+
+	}
+	.button__form:hover {
+	background: #132e99;
+	transition: 0.4s;
+	}
+	@media (min-width: 568px) {
+	.main-block {
+	flex-direction: row;
+	}
+	.left-part, .form__form {
+	width: 50%;
+	}
+	.fa-envelope {
+	margin-top: 0;
+	margin-left: 20%;
+	}
+	.fa-at {
+	margin-top: -10%;
+	margin-left: 65%;
+	}
+	.fa-mail-bulk {
+	margin-top: 2%;
+	margin-left: 28%;
+	}
+	}
+
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <header class="header">
+        <div class="header__container _container">
+            <a href="#" class="header__logo"><img src="img/logo21.png" alt="Логотип" draggable="false" height="100px" width="150px" ></a>
+            <nav class="header__menu menu">
+                <ul class="menu__list">
+                    <li class="menu__item">
+                        <a href="tel:+380989306187" class="menu__link"></a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="#about-us-scroll" class="menu__link">Про нас</a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="#gallery-scroll" class="menu__link">Галерея</a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="#form-scroll" class="menu__link">Зв'язатися з нами</a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="#place-scroll" class="menu__link">Геолокація</a>
+                    </li>
+                </ul>
+
+
+
+
+            </nav>
+        </div>
+
+    </header>
+    <main class="page">
+        <div class="page__main-block main-block">
+            <div class="main-block__container _container">
+                <div class="main-block__body">
+                    <h1 class="main-block__title _anim-items _anim-no-hide">EXPRESS TRUCKING COMPANY</h1>
+                    <div class="main-block__text _anim-items _anim-no-hide">
+                        ЛОГІСТИЧНА КОМПАНІЯ
+                    </div>
+                    <div class="main-block__buttons">
+                        <a href="" class="main-block__button  _anim-items _anim-no-hide">Обрати послугу</a>
+                    </div>
+                </div>
+            </div>
+            <div class="main-block__image _ibg">
+                <img src="img/main12.jpeg" alt="cover">
+            </div>
+        </div>
+        <section class="fullscreen_bg">
+
+        </section>
+        <div class="page-main-block about-us">
+            <div class="about-us__container _container" >
+                <div class="about-us__body" id="about-us-scroll">
+                    <div class="about-us__img">
+                        <img src="/img/truck1.jpg" alt="Про нас" width="1400px" height="500px" class="img-truck_about" unselectable="on" draggable="false">
+                    </div>
+                    <div class="about-us__text">
+                        <h1 class="about-us__title _anim-items _anim-no-hide">Про нас</h1>
+                        <div class="about-text__text _anim-items"><p class="_anim-show">Логістика — це основний вид нашої професійної діяльності. Виконуючи свою роботу, ми керуємося принципами порядного і чесного ведення бізнесу. Довіряючи нам свої вантажі, Ви можете бути впевнені в безпеці і своєчасній доставці вантажу в місце призначення.</p></div>
+                        <div class="about-text__text _anim-items"><p class="_anim-show">Щоб надати чудовi рiшення, ми придiляємо час i ресурси дослiдженню потреб ринку, звичок i мотивiв наших користувачiв. Ми маємо i будемо продовжувати невтомно працювати, щоб стати технологiчним стандартом, надаючи широку картину, яку лiдери галузi не тiльки схвалюють, але й залежать вiд неї. Зв'яжiться з нами, щоб дiзнатися бiльше.</p></div>
+                        <div class="main-block__buttons">
+                            <a href="" class="main-block__button _anim-items _anim-no-hide">Подати заявку</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="price">
+                <div class="price__body _container">
+                    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center w-100 ">
+                        <div class="col _anim-items _anim-no-hide">
+                            <div class="card mb-4 rounded-3 shadow-sm">
+                                <div class="card-header py-3">
+                                    <h4 class="my-0 fw-normal">Безкоштовний</h4>
+                                </div>
+                                <div class="card-body">
+                                    <h1 class="card-title pricing-card-title">$0<small class="text-muted fw-light">/mo</small></h1>
+                                    <ul class="list-unstyled mt-3 mb-4">
+                                        <li>GPS Flee Tracking</li>
+                                        <li>Безкоштовна упаковка</li>
+                                        <li>Підтримка електронною поштою</li>
+                                        <li>Доступ до довідкового центру</li>
+                                    </ul>
+                                    <button type="button" class="w-100 btn btn-lg btn-outline-primary">Обрати</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col _anim-items _anim-no-hide">
+                            <div class="card mb-4 rounded-3 shadow-sm">
+                                <div class="card-header py-3">
+                                    <h4 class="my-0 fw-normal">Золотий</h4>
+                                </div>
+                                <div class="card-body">
+                                    <h1 class="card-title pricing-card-title">$15<small class="text-muted fw-light">/mo</small></h1>
+                                    <ul class="list-unstyled mt-3 mb-4">
+                                        <li>Міжнародна доставка</li>
+                                        <li>Морські та повітряні вантажні перевезення</li>
+                                        <li>Пріоритетна підтримка електронною поштою</li>
+                                        <li>Преміальна упаковка</li>
+                                    </ul>
+                                    <button type="button" class="w-100 btn btn-lg btn-primary">Обрати</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col _anim-items _anim-no-hide">
+                            <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                                <div class="card-header py-3 text-white bg-primary border-primary">
+                                    <h4 class="my-0 fw-normal">Платиновий</h4>
+                                </div>
+                                <div class="card-body">
+                                    <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
+                                    <ul class="list-unstyled mt-3 mb-4">
+                                        <li>Місцева та всесвітня доставка</li>
+                                        <li>Довгострокове зберігання</li>
+                                        <li>Підтримка по телефону та електронній пошті</li>
+                                        <li>Доступ до довідкового центру</li>
+                                    </ul>
+                                    <button type="button" class="w-100 btn btn-lg btn-primary">Обрати</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!---->
+            <div id="gallery-scroll" class=""></div>
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="/img/carousel_img1.jpg" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="/img/carousel_img2.jpg" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="/img/carousel_img3.png" alt="Third slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <!--------------------->
+
+            <div class="page-main-block poll" >
+                <div class="poll__container " >
+                    <div class="poll__body" id="form-scroll">
+
+                        <!-------------------------------------->
+                        <div class="main-block">
+                            <form action="mailto:azazinkreet16@gmail.com" method="POST" class="form__form" >
+                                <h1 class="form__title" >Подати заявку</h1>
+                                <div class="info">
+                                    <input class="form__input" type="text" name="name" placeholder="Прізвище, ім'я та по батькові">
+                                    <input class="form__input" type="text" name="name" placeholder="Е-мейл">
+                                    <input class="form__input" type="text" name="name" placeholder="Номер телефону">
+                                </div>
+                                <p class="form__message">Повiдомлення</p>
+                                <div>
+                                    <textarea class="form__textarea" rows="4"></textarea>
+                                </div>
+                                <input class="button__form" type="submit" value="Подати заявку" href="mailto:azazinkreet16@gmail.com"></input>
+                            </form>
+                        </div>
+                        <!-------------------------------------->
+
+                    </div>
+                </div>
+            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2572.609291015261!2d24.01173361538307!3d49.8497984383427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add6e7963a703%3A0x295a736dad286608!2z0JvRjNCy0ZbQstGB0YzQutC40Lkg0LTQtdGA0LbQsNCy0L3QuNC5INGD0L3RltCy0LXRgNGB0LjRgtC10YIg0LHQtdC30L_QtdC60Lgg0LbQuNGC0YLRlNC00ZbRj9C70YzQvdC-0YHRgtGWINCU0KHQndChINCj0LrRgNCw0ZfQvdC4!5e0!3m2!1suk!2sde!4v1646125156159!5m2!1suk!2sde" width="100%" height="450px" style="border:0;" allowfullscreen="" loading="lazy" id="place-scroll"></iframe>				</div>
+    </main>
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+                </a>
+                <span class="text-muted">© 2022 Express Trucking Company, Inc</span>
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="js/script.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
